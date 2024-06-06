@@ -1,0 +1,430 @@
+{
+  "status": "ok",
+  "errors": [],
+  "config": [
+    {
+      "file": "c:\\code\\nginx-config-prase\\nginx.conf",
+      "status": "ok",
+      "errors": [],
+      "parsed": [
+        {
+          "directive": "user",
+          "line": 2,
+          "args": [
+            "www-data"
+          ]
+        },
+        {
+          "directive": "worker_processes",
+          "line": 3,
+          "args": [
+            "auto"
+          ]
+        },
+        {
+          "directive": "pid",
+          "line": 4,
+          "args": [
+            "/run/nginx.pid"
+          ]
+        },
+        {
+          "directive": "events",
+          "line": 7,
+          "args": [],
+          "block": [
+            {
+              "directive": "worker_connections",
+              "line": 8,
+              "args": [
+                "768"
+              ]
+            }
+          ]
+        },
+        {
+          "directive": "http",
+          "line": 12,
+          "args": [],
+          "block": [
+            {
+              "directive": "sendfile",
+              "line": 18,
+              "args": [
+                "on"
+              ]
+            },
+            {
+              "directive": "tcp_nopush",
+              "line": 19,
+              "args": [
+                "on"
+              ]
+            },
+            {
+              "directive": "tcp_nodelay",
+              "line": 20,
+              "args": [
+                "on"
+              ]
+            },
+            {
+              "directive": "keepalive_timeout",
+              "line": 21,
+              "args": [
+                "65"
+              ]
+            },
+            {
+              "directive": "types_hash_max_size",
+              "line": 22,
+              "args": [
+                "2048"
+              ]
+            },
+            {
+              "directive": "server_tokens",
+              "line": 23,
+              "args": [
+                "off"
+              ]
+            },
+            {
+              "directive": "default_type",
+              "line": 29,
+              "args": [
+                "application/octet-stream"
+              ]
+            },
+            {
+              "directive": "ssl_protocols",
+              "line": 35,
+              "args": [
+                "TLSv1",
+                "TLSv1.1",
+                "TLSv1.2"
+              ]
+            },
+            {
+              "directive": "ssl_prefer_server_ciphers",
+              "line": 36,
+              "args": [
+                "on"
+              ]
+            },
+            {
+              "directive": "access_log",
+              "line": 42,
+              "args": [
+                "/var/log/nginx/access.log"
+              ]
+            },
+            {
+              "directive": "error_log",
+              "line": 43,
+              "args": [
+                "/var/log/nginx/error.log"
+              ]
+            },
+            {
+              "directive": "gzip",
+              "line": 49,
+              "args": [
+                "on"
+              ]
+            }
+          ]
+        },
+        {
+          "directive": "stream",
+          "line": 65,
+          "args": [],
+          "block": [
+            {
+              "directive": "server",
+              "line": 67,
+              "args": [],
+              "block": [
+                {
+                  "directive": "listen",
+                  "line": 68,
+                  "args": [
+                    "16633"
+                  ]
+                },
+                {
+                  "directive": "proxy_connect_timeout",
+                  "line": 69,
+                  "args": [
+                    "1h"
+                  ]
+                },
+                {
+                  "directive": "proxy_timeout",
+                  "line": 70,
+                  "args": [
+                    "1h"
+                  ]
+                },
+                {
+                  "directive": "proxy_pass",
+                  "line": 71,
+                  "args": [
+                    "115.28.23.78:80"
+                  ]
+                }
+              ]
+            },
+            {
+              "directive": "server",
+              "line": 75,
+              "args": [],
+              "block": [
+                {
+                  "directive": "listen",
+                  "line": 76,
+                  "args": [
+                    "29983"
+                  ]
+                },
+                {
+                  "directive": "proxy_connect_timeout",
+                  "line": 77,
+                  "args": [
+                    "1h"
+                  ]
+                },
+                {
+                  "directive": "proxy_timeout",
+                  "line": 78,
+                  "args": [
+                    "1h"
+                  ]
+                },
+                {
+                  "directive": "proxy_pass",
+                  "line": 79,
+                  "args": [
+                    "10.16.254.34:19983"
+                  ]
+                }
+              ]
+            },
+            {
+              "directive": "server",
+              "line": 82,
+              "args": [],
+              "block": [
+                {
+                  "directive": "listen",
+                  "line": 83,
+                  "args": [
+                    "19088"
+                  ]
+                },
+                {
+                  "directive": "proxy_connect_timeout",
+                  "line": 84,
+                  "args": [
+                    "1h"
+                  ]
+                },
+                {
+                  "directive": "proxy_timeout",
+                  "line": 85,
+                  "args": [
+                    "1h"
+                  ]
+                },
+                {
+                  "directive": "proxy_pass",
+                  "line": 86,
+                  "args": [
+                    "10.16.254.35:19988"
+                  ]
+                }
+              ]
+            },
+            {
+              "directive": "server",
+              "line": 89,
+              "args": [],
+              "block": [
+                {
+                  "directive": "listen",
+                  "line": 90,
+                  "args": [
+                    "16603"
+                  ]
+                },
+                {
+                  "directive": "proxy_connect_timeout",
+                  "line": 91,
+                  "args": [
+                    "1h"
+                  ]
+                },
+                {
+                  "directive": "proxy_timeout",
+                  "line": 92,
+                  "args": [
+                    "1h"
+                  ]
+                },
+                {
+                  "directive": "proxy_pass",
+                  "line": 93,
+                  "args": [
+                    "10.16.254.35:19989"
+                  ]
+                }
+              ]
+            },
+            {
+              "directive": "server",
+              "line": 96,
+              "args": [],
+              "block": [
+                {
+                  "directive": "listen",
+                  "line": 97,
+                  "args": [
+                    "28083"
+                  ]
+                },
+                {
+                  "directive": "proxy_connect_timeout",
+                  "line": 98,
+                  "args": [
+                    "1h"
+                  ]
+                },
+                {
+                  "directive": "proxy_timeout",
+                  "line": 99,
+                  "args": [
+                    "1h"
+                  ]
+                },
+                {
+                  "directive": "proxy_pass",
+                  "line": 100,
+                  "args": [
+                    "10.16.254.35:19990"
+                  ]
+                }
+              ]
+            },
+            {
+              "directive": "server",
+              "line": 104,
+              "args": [],
+              "block": [
+                {
+                  "directive": "listen",
+                  "line": 105,
+                  "args": [
+                    "19089"
+                  ]
+                },
+                {
+                  "directive": "proxy_connect_timeout",
+                  "line": 106,
+                  "args": [
+                    "1h"
+                  ]
+                },
+                {
+                  "directive": "proxy_timeout",
+                  "line": 107,
+                  "args": [
+                    "1h"
+                  ]
+                },
+                {
+                  "directive": "proxy_pass",
+                  "line": 108,
+                  "args": [
+                    "10.16.254.34:19986"
+                  ]
+                }
+              ]
+            },
+            {
+              "directive": "server",
+              "line": 111,
+              "args": [],
+              "block": [
+                {
+                  "directive": "listen",
+                  "line": 112,
+                  "args": [
+                    "19991"
+                  ]
+                },
+                {
+                  "directive": "proxy_connect_timeout",
+                  "line": 113,
+                  "args": [
+                    "1h"
+                  ]
+                },
+                {
+                  "directive": "proxy_timeout",
+                  "line": 114,
+                  "args": [
+                    "1h"
+                  ]
+                },
+                {
+                  "directive": "proxy_pass",
+                  "line": 115,
+                  "args": [
+                    "10.16.254.35:19991"
+                  ]
+                }
+              ]
+            },
+            {
+              "directive": "server",
+              "line": 118,
+              "args": [],
+              "block": [
+                {
+                  "directive": "listen",
+                  "line": 119,
+                  "args": [
+                    "9090"
+                  ]
+                },
+                {
+                  "directive": "proxy_connect_timeout",
+                  "line": 120,
+                  "args": [
+                    "1h"
+                  ]
+                },
+                {
+                  "directive": "proxy_timeout",
+                  "line": 121,
+                  "args": [
+                    "1h"
+                  ]
+                },
+                {
+                  "directive": "proxy_pass",
+                  "line": 122,
+                  "args": [
+                    "10.16.254.35:19993"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+
+Process finished with the exit code 0
