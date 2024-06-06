@@ -22,7 +22,7 @@ jobs:
         go-version: '1.20'
 
     - name: Build
-      run: go build -v ./... -o nginx-config-prase
+      run: go build -o nginx-config-prase ./ 
 
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v4.3.3
