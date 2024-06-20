@@ -79,3 +79,5 @@ fabric.properties
 
 nginx-config-prase
 /nginx-config/
+/go_build_nginx_config_parse.exe
+/ngnt
