@@ -2,7 +2,10 @@ module nginx-config-prase
 
 go 1.22
 
-require github.com/nginxinc/nginx-go-crossplane v0.4.41
+require (
+	github.com/nginxinc/nginx-go-crossplane v0.4.41
+	github.com/sirupsen/logrus v1.9.3
+)
 
 require (
 	github.com/jstemmer/go-junit-report v1.0.0 // indirect
