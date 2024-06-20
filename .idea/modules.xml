@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/nginx-config-prase.iml" filepath="$PROJECT_DIR$/.idea/nginx-config-prase.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/nginx-config-parse.iml" filepath="$PROJECT_DIR$/.idea/nginx-config-parse.iml" />
     </modules>
   </component>
 </project>

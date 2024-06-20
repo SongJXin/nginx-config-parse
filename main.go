@@ -2,10 +2,16 @@ package main
 
 import (
 	"github.com/nginxinc/nginx-go-crossplane"
-	"nginx-config-prase/src/output"
-	"nginx-config-prase/src/util"
+	"github.com/spf13/cobra"
+	"nginx-config-parse/src/output"
+	"nginx-config-parse/src/util"
 	"os"
 )
+
+var rootCmd = &cobra.Command{
+	Use:   "nginx-config-parse",
+	Short: "My application does wonderful things",
+}
 
 func main() {
 	if len(os.Args) != 2 {

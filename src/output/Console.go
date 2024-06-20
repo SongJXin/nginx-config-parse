@@ -3,8 +3,8 @@ package output
 import (
 	"fmt"
 	crossplane "github.com/nginxinc/nginx-go-crossplane"
-	"nginx-config-prase/src/parse"
-	"nginx-config-prase/src/util"
+	"nginx-config-parse/src/parse"
+	"nginx-config-parse/src/util"
 	"os"
 	"strings"
 	"text/tabwriter"
