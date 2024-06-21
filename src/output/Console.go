@@ -26,7 +26,7 @@ func ConsolePrintServerConfig(config *crossplane.Payload) {
 		serverConfigs = append(serverConfigs, serverConfig...)
 	}
 	writer := tabwriter.NewWriter(os.Stdout, 1, 0, 2, ' ', tabwriter.TabIndent)
-	_, err := fmt.Fprintln(writer, "Listen\tLocation\tContext\tProxyPass\tConfigFile")
+	_, err := fmt.Fprintln(writer, "Listen\tServerName\tLocation\tProxyPass\tConfigFile")
 	if err != nil {
 		util.Logger.Error("Print server config failed:", err)
 		return
