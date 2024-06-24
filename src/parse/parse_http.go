@@ -4,8 +4,9 @@ import (
 	crossplane "github.com/nginxinc/nginx-go-crossplane"
 )
 
-func HttpParse(parsedConfig crossplane.Directives) []ServerConfig {
-	var serverConfigs []ServerConfig
+func HttpParse(parsedConfig crossplane.Directives) ([]ProxyConfig, []UpstreamConfig) {
+	var serverConfigs []ProxyConfig
+	var upstreamConfigs []UpstreamConfig
 	for _, directive := range parsedConfig {
 		if directive.Directive == "server" {
 			var listenPort []string
@@ -23,7 +24,7 @@ func HttpParse(parsedConfig crossplane.Directives) []ServerConfig {
 					continue
 				case "location":
 					context, proxyPass, line = LocationParse(subDirective)
-					serverConfig := ServerConfig{
+					serverConfig := ProxyConfig{
 						Listen:     listenPort,
 						Location:   context,
 						ProxyPass:  proxyPass,
@@ -31,10 +32,14 @@ func HttpParse(parsedConfig crossplane.Directives) []ServerConfig {
 						Line:       line,
 					}
 					serverConfigs = append(serverConfigs, serverConfig)
+				case "upstream":
+					upstreamConfigs = append(upstreamConfigs, UpstreamParse(subDirective))
 				}
 				continue
 			}
+		} else if directive.Directive == "upstream" {
+			upstreamConfigs = append(upstreamConfigs, UpstreamParse(directive))
 		}
 	}
-	return serverConfigs
+	return serverConfigs, upstreamConfigs
 }

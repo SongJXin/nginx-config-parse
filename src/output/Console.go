@@ -10,31 +10,24 @@ import (
 	"text/tabwriter"
 )
 
-func ConsolePrintServerConfig(config *crossplane.Payload) {
+func ConsolePrint(config *crossplane.Payload) {
+	serverConfigs, upstreamConfigs := parse.Parse(config)
+	ConsolePrintProxyConfig(serverConfigs)
+	ConsolePrintUpstreamConfig(upstreamConfigs)
+}
+
+func ConsolePrintProxyConfig(proxyConfigs []parse.ProxyConfig) {
+	fmt.Println()
+	fmt.Println("Server config:")
 	// 解析每个 server 块并提取监听端口和转发目标
-	var serverConfigs []parse.ServerConfig
-	for _, parsedFile := range config.Config {
-		util.Logger.Infof("parsed file %s status %s\n", parsedFile.File, util.CompareAndColorize("ok", parsedFile.Status))
-		if len(parsedFile.Errors) > 0 {
-			util.Logger.Error("Errors:", parsedFile.Errors)
-			continue
-		}
-		serverConfig := parse.ConfigParse(parsedFile.Parsed)
-		for i := range serverConfig {
-			serverConfig[i].ConfigFile = parsedFile.File
-		}
-		serverConfigs = append(serverConfigs, serverConfig...)
-	}
+
 	writer := tabwriter.NewWriter(os.Stdout, 1, 0, 2, ' ', tabwriter.TabIndent)
 	_, err := fmt.Fprintln(writer, "Listen\tServerName\tLocation\tProxyPass\tConfigFile")
 	if err != nil {
 		util.Logger.Error("Print server config failed:", err)
 		return
 	}
-	for _, c := range serverConfigs {
-		if c.ProxyPass == "" {
-			continue
-		}
+	for _, c := range proxyConfigs {
 		_, err := fmt.Fprintln(
 			writer,
 			strings.Join(c.Listen, " ")+"\t"+
@@ -52,4 +45,47 @@ func ConsolePrintServerConfig(config *crossplane.Payload) {
 		util.Logger.Error("Print server config failed:", err)
 		return
 	}
+	fmt.Println()
+}
+func ConsolePrintUpstreamConfig(upstreamConfig []parse.UpstreamConfig) {
+	fmt.Println()
+	fmt.Println("Upstream config:")
+	writer := tabwriter.NewWriter(os.Stdout, 1, 0, 2, ' ', tabwriter.TabIndent)
+	_, err := fmt.Fprintln(writer, "Upstream\tPolicy\tServices\tConfigFile")
+	if err != nil {
+		util.Logger.Error("Print server config failed:", err)
+		return
+	}
+	for _, c := range upstreamConfig {
+		for i, s := range c.Servers {
+			if i == 0 {
+				_, err := fmt.Fprintln(
+					writer,
+					c.Upstream+"\t"+
+						strings.Join(c.Policy, ";")+"\t"+
+						s.String()+"\t"+
+						fmt.Sprintf("%s:%d", c.ConfigFile, c.Line))
+				if err != nil {
+					util.Logger.Error("Print server config failed:", err)
+					return
+				}
+			} else {
+				_, err := fmt.Fprintln(
+					writer,
+					" \t \t"+s.String()+"\t\t")
+				if err != nil {
+					util.Logger.Error("Print server config failed:", err)
+					return
+				}
+
+			}
+
+		}
+		err = writer.Flush()
+		if err != nil {
+			util.Logger.Error("Print server config failed:", err)
+			return
+		}
+	}
+	fmt.Println()
 }

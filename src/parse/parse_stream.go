@@ -4,8 +4,8 @@ import (
 	crossplane "github.com/nginxinc/nginx-go-crossplane"
 )
 
-func StreamParse(parsedConfig crossplane.Directives) []ServerConfig {
-	var serverConfigs []ServerConfig
+func StreamParse(parsedConfig crossplane.Directives) []ProxyConfig {
+	var serverConfigs []ProxyConfig
 	for _, directive := range parsedConfig {
 		if directive.Directive == "server" {
 			var listenPort []string
@@ -22,7 +22,7 @@ func StreamParse(parsedConfig crossplane.Directives) []ServerConfig {
 					continue
 				}
 			}
-			serverConfig := ServerConfig{
+			serverConfig := ProxyConfig{
 				Listen:    listenPort,
 				Location:  context,
 				ProxyPass: proxyPass,

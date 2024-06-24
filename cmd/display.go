@@ -22,7 +22,7 @@ func NewDisplayCmd() *cobra.Command {
 			if err != nil {
 				util.Logger.Fatalf("Error parsing Nginx config file: %v", err)
 			}
-			output.ConsolePrintServerConfig(config)
+			output.ConsolePrint(config)
 		},
 	}
 	//displayCmd.Flags().StringP("config", "c", "/etc/nginx/nginx.conf", "nginx config path")
