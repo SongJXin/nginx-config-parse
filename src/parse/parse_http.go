@@ -32,8 +32,6 @@ func HttpParse(parsedConfig crossplane.Directives) ([]ProxyConfig, []UpstreamCon
 						Line:       line,
 					}
 					serverConfigs = append(serverConfigs, serverConfig)
-				case "upstream":
-					upstreamConfigs = append(upstreamConfigs, UpstreamParse(subDirective))
 				}
 				continue
 			}

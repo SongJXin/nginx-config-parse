@@ -53,18 +53,27 @@ func ConfigParse(parsedConfig crossplane.Directives) ([]ProxyConfig, []UpstreamC
 					continue
 				case "location":
 					context, proxyPass, line = LocationParse(subDirective)
+					serverConfig := ProxyConfig{
+						Listen:     listenPort,
+						Location:   context,
+						ProxyPass:  proxyPass,
+						ServerName: serverName,
+						Line:       line,
+					}
+					serverConfigs = append(serverConfigs, serverConfig)
+					continue
 				case "proxy_pass":
 					proxyPass, line = ProxyPassParse(subDirective)
+					serverConfig := ProxyConfig{
+						Listen:     listenPort,
+						Location:   context,
+						ProxyPass:  proxyPass,
+						ServerName: serverName,
+						Line:       line,
+					}
+					serverConfigs = append(serverConfigs, serverConfig)
+					continue
 				}
-
-				serverConfig := ProxyConfig{
-					Listen:     listenPort,
-					Location:   context,
-					ProxyPass:  proxyPass,
-					ServerName: serverName,
-					Line:       line,
-				}
-				serverConfigs = append(serverConfigs, serverConfig)
 
 			}
 
