@@ -19,16 +19,25 @@ func ServerNameParse(args []string) []string {
 func LocationParse(Directive *crossplane.Directive) (string, string, int) {
 	context := Directive.Args[0]
 	var proxyPass string
-	line := Directive.Line
+	var line int
 	for _, locationDirective := range Directive.Block {
 		if locationDirective.Directive == "proxy_pass" {
-			proxyPass, _ = ProxyPassParse(locationDirective)
+			proxyPass, line = ProxyPassParse(locationDirective)
+		} else if locationDirective.Directive == "alias" {
+			proxyPass, line = AliasParse(locationDirective)
 		}
 	}
 	return context, proxyPass, line
 }
 
 func ProxyPassParse(locationDirective *crossplane.Directive) (string, int) {
+	if len(locationDirective.Args) > 0 {
+		return locationDirective.Args[0], locationDirective.Line
+	}
+	return "", 0
+}
+
+func AliasParse(locationDirective *crossplane.Directive) (string, int) {
 	if len(locationDirective.Args) > 0 {
 		return locationDirective.Args[0], locationDirective.Line
 	}
